@@ -1,4 +1,4 @@
-name: "Build Image"
+name: "Build and publish"
 on:
   schedule:
     - cron: "0 0 */7 * *" # every week at midnight
@@ -12,9 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        name:
-          - { name: "arch-latest", path:"latest/arch" }
-          - { name: "ubuntu-latest", path:"latest/ubuntu" }
+        os-name: ["arch", "ubuntu"]
+        hascal-version: ["latest"]
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -32,23 +31,11 @@ jobs:
         with:
           cosign-release: "v1.9.0"
 
-      - name: Push to Docker Hub ${{ matrix.name.name }}
+      - name: Push to ghcr.io ${{matrix.hascal-version}}/${{matrix.os-name}}
         uses: docker/build-push-action@v2
         with:
-          context: ${{ matrix.name.path }}
-          tags: ghcr.io/hascal/hascal-${{ matrix.name.name }}:${{ github.ref }}
+          context: ${{matrix.hascal-version}}/${{matrix.os-name}}
+          tags: ghcr.io/hascal/hascal-${{ matrix.os-name }}:${{matrix.hascal-version}}
           push: true
           labels: ${{ steps.meta.outputs.labels }}
 
-      # Sign the resulting Docker image digest except on PRs.
-      # This will only write to the public Rekor transparency log when the Docker
-      # repository is public to avoid leaking data.  If you would like to publish
-      # transparency data even for private images, pass --force to cosign below.
-      # https://github.com/sigstore/cosign
-      - name: Sign the published Docker image
-        if: ${{ github.event_name != 'pull_request' }}
-        env:
-          COSIGN_EXPERIMENTAL: "true"
-        # This step uses the identity token to provision an ephemeral certificate
-        # against the sigstore community Fulcio instance.
-        run: cosign sign ${{ steps.meta.outputs.tags }}@${{ steps.build-and-push.outputs.digest }}

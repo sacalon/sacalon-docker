@@ -8,7 +8,8 @@ ENV LANG en_US.UTF-8
 
 
 # install base pacakges
-RUN pacman -Syu --noconfirm base \
+RUN pacman -Syu --noconfirm --needed\
+ 	base \
 	base-devel \
 	git \
 	python \

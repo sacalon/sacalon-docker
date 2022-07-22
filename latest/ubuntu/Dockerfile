@@ -7,15 +7,14 @@ ENV PATH /usr/local/bin:$PATH
 ENV LANG en_US.UTF-8
 
 # update and install base pacakges
-RUN apt-get update && apt-get install -y \
-    build-essential \
+RUN apt update; \
+    apt install -y build-essential \
     git \
-    python \
-    python-pip \
+    python3 \
+    python3-pip \
     curl \
-    libcurl3 \
     libssl-dev \
-    libcrypt-dev
+    libcrypt-dev 
 
 # install pip packages
 RUN pip install -U pip \

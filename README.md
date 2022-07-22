@@ -1,5 +1,4 @@
 [![Build Image](https://github.com/hascal/hascal-docker/actions/workflows/publish.yaml/badge.svg)](https://github.com/hascal/hascal-docker/actions/workflows/publish.yaml)
-[![Build Image](https://github.com/hascal/hascal-docker/actions/workflows/test.yaml/badge.svg)](https://github.com/hascal/hascal-docker/actions/workflows/test.yaml)
 
 # hascal-docker
 
