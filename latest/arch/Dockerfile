@@ -12,8 +12,10 @@ RUN pacman -Syu --noconfirm base \
 	base-devel \
 	git \
 	python \
-	python-pip
-
+	python-pip \
+	curl \
+	libressl\
+	libxcrypt
 
 # install pip packages
 RUN pip install -U pip \
