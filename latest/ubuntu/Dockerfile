@@ -14,7 +14,7 @@ RUN apt update; \
     python3-pip \
     curl \
     libssl-dev \
-    libcrypt-dev 
+    libcrypt-dev
 
 # install pip packages
 RUN pip install -U pip \

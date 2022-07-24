@@ -37,4 +37,3 @@ RUN cp -v /usr/local/src/hascal/dist/hascal /usr/local/bin/hascal; \
 
 # show hascal version
 RUN hascal
- 
