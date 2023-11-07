@@ -1,17 +1,17 @@
-[![Build Image](https://github.com/hascal/hascal-docker/actions/workflows/publish.yaml/badge.svg)](https://github.com/hascal/hascal-docker/actions/workflows/publish.yaml)
+[![Build Image](https://github.com/sacalon-lang/sacalon-docker/actions/workflows/publish.yaml/badge.svg)](https://github.com/sacalon-lang/sacalon-docker/actions/workflows/publish.yaml)
 
-# hascal-docker
+# Sacalon for Docker
 
-Your can use this image to compile and run hascal codes.
+Your can use this image to compile and run sacalon codes.
 
 ~For now we only support Arch linux. We are planning to support other OSs in the future.~
 
 ## basic usage
 
 ```dockerfile
-FROM hascal/hascal:latest
+FROM sacalon-lang/sacalon:latest
 
-RUN git clone https://github.com/hascal/hascal.git /hascal  # clone hascal repo to /hascal
+RUN git clone https://github.com/sacalon-lang/sacalon.git /sacalon  # clone sacalon repo to /sacalon
 
-RUN hascal run /hascal/examples/hello.has  # compile an example code and run it
+RUN sacalon run /sacalon/examples/hello.sa  # compile an example code and run it
 ```
