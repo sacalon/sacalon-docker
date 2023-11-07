@@ -22,16 +22,16 @@ RUN pip install -U pip \
     wheel \
     pyinstaller
 
-# clone and build the hascal
-RUN git clone https://github.com/hascal/hascal.git /usr/local/src/hascal; \
-    cd /usr/local/src/hascal; \
+# clone and build the sacalon
+RUN git clone https://github.com/sacalon-lang/sacalon.git /usr/local/src/sacalon; \
+    cd /usr/local/src/sacalon; \
     pip install -r requirements.txt; \
-    make build  # this will build the hascal executable
+    make build  # this will build the sacalon executable
 
-# install hascal
-RUN cp -v /usr/local/src/hascal/dist/hascal /usr/local/bin/hascal; \
-    chmod +x /usr/local/bin/hascal; \
-    cp -rv /usr/local/src/hascal/dist/hlib /usr/local/lib/hascal;
+# install sacalon
+RUN cp -v /usr/local/src/sacalon/dist/hascal /usr/local/bin/hascal; \
+    chmod +x /usr/local/bin/sacalon; \
+    cp -rv /usr/local/src/sacalon/dist/hlib /usr/local/lib/hascal;
 
-# show hascal version
-RUN hascal
+# show sacalon version
+RUN sacalon
